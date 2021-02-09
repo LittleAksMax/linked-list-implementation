@@ -1,5 +1,4 @@
 #include "linkedlist.h"
-#include <stdio.h>
 
 #define NULL_NODE ((void*)0)                         // practically NULL
 
