@@ -37,9 +37,13 @@ void ll_b_insert(Node** head, Node* node_to_insert)
 Node* ll_remove(Node** head, int val)
 {
     Node* temp = *head;
-    while (temp != NULL_NODE)
+    while (temp->next != NULL_NODE)
     {
-        if (temp->value == val) return temp;         // could also break here, and return temp at the end, same result
+        if (temp->next->value == val)
+        {
+            temp->next = temp->next->next;
+            return temp->next;                       // return to be freed if allocated on heap
+        }
         temp = temp->next;
     }
     return NULL_NODE;
@@ -50,7 +54,7 @@ Node* ll_find(Node** head, int val)
     Node* temp = *head;
     while (temp != NULL_NODE)
     {
-        if (temp->value == val) return temp;
+        if (temp->value == val) return temp;         // could also break here, and return temp at the end, same result
         temp = temp->next;
     }
     return NULL_NODE;                                // not found
